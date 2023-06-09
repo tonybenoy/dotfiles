@@ -1,0 +1,4 @@
+alias downs="gsettings set org.gnome.desktop.interface text-scaling-factor 1.5"
+alias ups="gsettings set org.gnome.desktop.interface text-scaling-factor 0.88"
+alias ls="exa -l --git"
+alias cat="bat"
