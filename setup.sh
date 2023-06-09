@@ -1,5 +1,5 @@
 #!/bin/bash
-files=(".zshrc" ".zshenv" ".bashrc" ".bashrc.aliases" ".gitconfig")
+files=(".zshrc" ".zshenv" ".bashrc" ".bashrc.aliases" ".p10k.zsh" ".gitconfig")
 for file in * .[^.]*; do 
 	if [[ " ${files[*]} " =~ " ${file} " ]]; then
 		echo "Symlinking file $PWD/$file"
