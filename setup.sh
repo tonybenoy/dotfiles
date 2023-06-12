@@ -11,4 +11,3 @@ for file in * .[^.]*; do
 	fi
 done
 ln -nfs $PWD/.config/pypoetry/config.toml /home/$USER/.config/pypoetry/config.toml
-ln -nfs $PWD/.work/.gitconfig /home/$USER/work/.gitconfig
