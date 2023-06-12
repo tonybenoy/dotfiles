@@ -1,6 +1,6 @@
 #!/bin/bash
 files=(".zshrc" ".zshenv" ".bashrc" ".bashrc.aliases" ".p10k.zsh" ".gitconfig")
-packages_needed=("autoenv-git" "zsh-fast-syntax-highlighting-git" "zsh-autosuggestions-git" "zsh" "oh-my-zsh-git" "zsh-theme-powerlevel10k-git")
+packages_needed=("autoenv-git" "zsh-fast-syntax-highlighting-git" "zsh-autosuggestions-git" "zsh" "oh-my-zsh-git" "ttf-meslo-nerd-font-powerlevel10k"  "zsh-theme-powerlevel10k-git")
 for pkg in ${packages_needed[@]}; do
 	yay -S $pkg
 done
@@ -11,3 +11,4 @@ for file in * .[^.]*; do
 	fi
 done
 ln -nfs $PWD/.config/pypoetry/config.toml /home/$USER/.config/pypoetry/config.toml
+ln -nfs $PWD/.work/.gitconfig /home/$USER/work/.gitconfig

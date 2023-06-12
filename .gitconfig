@@ -3,8 +3,8 @@
 	email = me@tonybenoy.com
 	signingKey = C26752B6501EAD3D
 
-[includeIf "gitdir/i:c:/.work/"]
-    path = .gitconfig
+[includeIf "gitdir:~/"]
+    path = ~/work/.gitconfig
 
 [gpg]
 	program = gpg2
