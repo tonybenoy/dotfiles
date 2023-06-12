@@ -2,11 +2,9 @@
 	name = Tony
 	email = me@tonybenoy.com
 	signingKey = C26752B6501EAD3D
-[user]
-	name = Tony
-	email = me@tonybenoy.com
-	signingKey = 309FEF623E13DE77
 
+[includeIf "gitdir/i:c:/.work/"]
+    path = .gitconfig
 
 [gpg]
 	program = gpg2
