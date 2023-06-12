@@ -1,5 +1,9 @@
 #!/bin/bash
 files=(".zshrc" ".zshenv" ".bashrc" ".bashrc.aliases" ".p10k.zsh" ".gitconfig")
+packages_needed=("autoenv-git" "zsh-fast-syntax-highlighting-git" "zsh-autosuggestions-git")
+for pkg in ${packages_needed[@]}; do
+	yay -S $pkg
+done
 for file in * .[^.]*; do
 	if [[ " ${files[*]} " =~ " ${file} " ]]; then
 		echo "Symlinking file $PWD/$file"
