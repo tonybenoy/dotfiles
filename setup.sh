@@ -1,8 +1,8 @@
 #!/bin/bash
 files=(".zshrc" ".zshenv" ".bashrc" ".bashrc.aliases" ".p10k.zsh" ".gitconfig")
-packages_needed=("autoenv-git" "zsh-fast-syntax-highlighting-git" "zsh-autosuggestions-git" "zsh" "oh-my-zsh-git" "ttf-meslo-nerd-font-powerlevel10k"  "zsh-theme-powerlevel10k-git")
+packages_needed=("autoenv-git" "zsh-fast-syntax-highlighting-git" "zsh-autosuggestions-git" "zsh" "oh-my-zsh-git" "ttf-meslo-nerd-font-powerlevel10k"  "zsh-theme-powerlevel10k-git" "exa" "bat" "fzf")
 for pkg in ${packages_needed[@]}; do
-	yay -S $pkg
+	yay -S $pkg --noconfirm
 done
 for file in * .[^.]*; do
 	if [[ " ${files[*]} " =~ " ${file} " ]]; then
