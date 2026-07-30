@@ -77,7 +77,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages command-not-found cp docker fzf pip poetry rust docker-compose python)
+plugins=(git colored-man-pages command-not-found cp docker fzf pip rust docker-compose python)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -113,21 +113,15 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias ls="exa -la"
+alias ls="eza -la"
 alias cat="bat"
-alias startssh="ssh-add /home/tony/.ssh/tony"
-alias startgpg='export GPG_TTY=$(tty)  && echo "test" | gpg --clearsign'   
-# GPG signing support
-alias xclip="clip.exe <"
-export PATH="/home/tony/.npm-global/bin:$PATH"
+alias startssh="ssh-add $HOME/.ssh/tony"
+# GPG signing support: unlock the agent up front with a throwaway signature
+alias startgpg='export GPG_TTY=$(tty) && echo "test" | gpg --clearsign'
+# WSL only — clip.exe does not exist on native Linux, which has the real xclip
+[[ -n ${WSL_DISTRO_NAME:-} ]] && alias xclip="clip.exe <"
 
-# opencode
-export PATH=/home/tony/.opencode/bin:$PATH
-
-
-# Sigyn
-export PATH="/home/tony/.sigyn/bin:$PATH"
-
-
-# Added by Antigravity CLI installer
-export PATH="/home/tony/.local/bin:$PATH"
+# $HOME/.local/bin is already on the path via .zshenv
+export PATH="$HOME/.npm-global/bin:$PATH"  # npm --global
+export PATH="$HOME/.opencode/bin:$PATH"    # opencode
+export PATH="$HOME/.sigyn/bin:$PATH"       # sigyn

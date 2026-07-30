@@ -11,5 +11,5 @@
 	insteadOf = https://github.com/
 [init]
 	defaultBranch = main
-[net]
-	git-fetch-with-cli = true
+[pull]
+	rebase = true
