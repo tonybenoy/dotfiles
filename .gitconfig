@@ -1,9 +1,15 @@
 [user]
 	name = Tony
 	email = me@tonybenoy.com
-	signingKey = C26752B6501EAD3D
+	signingkey = C26752B6501EAD3D
 
 [gpg]
 	program = gpg2
 [commit]
 	gpgsign = true
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+[init]
+	defaultBranch = main
+[net]
+	git-fetch-with-cli = true

@@ -71,17 +71,19 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh 
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages command-not-found cp docker fzf pip poetry rust docker-compose python) 
+plugins=(git colored-man-pages command-not-found cp docker fzf pip poetry rust docker-compose python)
 
 source $ZSH/oh-my-zsh.sh
+
+# These must be sourced after oh-my-zsh
+# zsh-autocomplete removed — conflicts with oh-my-zsh's fzf plugin (history-search widget clash)
+source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
 
 # User configuration
 
@@ -111,7 +113,24 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-alias ls="exa -la --git"
+alias ls="exa -la"
 alias cat="bat"
+# Auto-start SSH agent (persist across terminals via socket file)
+SSH_AGENT_SOCK="$HOME/.ssh/ssh-agent.sock"
+export SSH_AUTH_SOCK="$SSH_AGENT_SOCK"
+alias startssh="ssh-add /home/tony/.ssh/tony"
+alias startgpg='export GPG_TTY=$(tty)  && echo "test" | gpg --clearsign'   
+# GPG signing support
+alias xclip="clip.exe <"
+export PATH="/home/tony/.npm-global/bin:$PATH"
+
+# opencode
+export PATH=/home/tony/.opencode/bin:$PATH
 
 
+# Sigyn
+export PATH="/home/tony/.sigyn/bin:$PATH"
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/tony/.local/bin:$PATH"

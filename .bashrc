@@ -5,3 +5,4 @@ fi
 force_color_prompt=yes
 export PATH="/home/tony/.local/bin:$PATH"
 
+export PATH="/home/tony/.npm-global/bin:$PATH"
