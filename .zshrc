@@ -115,9 +115,6 @@ source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias ls="exa -la"
 alias cat="bat"
-# Auto-start SSH agent (persist across terminals via socket file)
-SSH_AGENT_SOCK="$HOME/.ssh/ssh-agent.sock"
-export SSH_AUTH_SOCK="$SSH_AGENT_SOCK"
 alias startssh="ssh-add /home/tony/.ssh/tony"
 alias startgpg='export GPG_TTY=$(tty)  && echo "test" | gpg --clearsign'   
 # GPG signing support
