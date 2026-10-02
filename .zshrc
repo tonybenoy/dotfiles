@@ -9,8 +9,10 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# Arch installs these under /usr/share; setup.sh on Debian clones them to ~/.local/share/zsh
+_zsh_first() { local f; for f in "$@"; do [[ -e $f ]] && { print -r -- $f; return; }; done; }
+export ZSH=$(_zsh_first /usr/share/oh-my-zsh ~/.local/share/zsh/oh-my-zsh)
+source "$(_zsh_first /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ~/.local/share/zsh/powerlevel10k/powerlevel10k.zsh-theme)"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -70,7 +72,7 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$(_zsh_first /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh)"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -83,7 +85,10 @@ source $ZSH/oh-my-zsh.sh
 
 # These must be sourced after oh-my-zsh
 # zsh-autocomplete removed — conflicts with oh-my-zsh's fzf plugin (history-search widget clash)
-source /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh 2>/dev/null
+_fsh=$(_zsh_first /usr/share/zsh/plugins/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh ~/.local/share/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh)
+[[ -n $_fsh ]] && source "$_fsh"
+unset _fsh
+unfunction _zsh_first
 
 # User configuration
 

@@ -1,7 +1,7 @@
 # dotfiles
 
-zsh + powerlevel10k config for Arch Linux and Arch-based distros, also used
-under WSL2. WSL-specific bits self-disable on native Linux.
+zsh + powerlevel10k config for Arch (and derivatives) and Debian/Ubuntu, also
+used under WSL2. WSL-specific bits self-disable on native Linux.
 
 ## Prerequisites
 
@@ -10,8 +10,9 @@ first:
 
 | Need | Why |
 | --- | --- |
-| Arch or Arch-based distro | `setup.sh` shells out to `yay` |
-| [`yay`](https://github.com/Jguer/yay) | AUR helper; **not** installed by the script |
+| Arch or Debian-based distro | `setup.sh` detects which from `/etc/os-release` |
+| [`yay`](https://github.com/Jguer/yay) (Arch only) | AUR helper; **not** installed by the script |
+| `sudo` (Debian only) | `setup.sh` runs `apt-get` through it |
 | `git`, `gnupg` | cloning, and commit signing (`commit.gpgsign = true`) |
 
 ## Install
@@ -33,7 +34,13 @@ It is idempotent; re-run it after a `git pull` to pick up new files.
 
 ### What it does
 
-Installs `zsh`, `oh-my-zsh-git`, `zsh-fast-syntax-highlighting-git`,
+**Debian/Ubuntu:** installs `zsh fzf bat zsh-autosuggestions eza` via apt (adding
+the eza apt repo if your release lacks it, e.g. Debian 12), symlinks `batcat` as
+`~/.local/bin/bat`, clones oh-my-zsh, powerlevel10k and fast-syntax-highlighting
+into `~/.local/share/zsh/`, and downloads MesloLGS NF into
+`~/.local/share/fonts/`. `.zshrc` looks in both the Arch and Debian locations.
+
+**Arch:** installs `zsh`, `oh-my-zsh-git`, `zsh-fast-syntax-highlighting-git`,
 `zsh-autosuggestions-git`, `zsh-theme-powerlevel10k-git`,
 `ttf-meslo-nerd-font-powerlevel10k`, `eza`, `bat`, `fzf` — then symlinks:
 

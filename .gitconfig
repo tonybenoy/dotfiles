@@ -4,7 +4,7 @@
 	signingkey = C26752B6501EAD3D
 
 [gpg]
-	program = gpg2
+	program = gpg
 [commit]
 	gpgsign = true
 [url "ssh://git@github.com/"]
