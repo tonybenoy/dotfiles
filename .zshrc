@@ -120,6 +120,12 @@ unfunction _zsh_first
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 alias ls="eza -la"
 alias cat="bat"
+# Start gnome-keyring's ssh component if it's installed, we're in a graphical session and no agent is set; no-op on WSL/Arch without GNOME
+if [[ -z ${SSH_AUTH_SOCK:-} && -n ${DISPLAY:-}${WAYLAND_DISPLAY:-} ]] && (( $+commands[gnome-keyring-daemon] )); then
+  _gk=$(gnome-keyring-daemon --start --components=ssh 2>/dev/null)
+  [[ $_gk =~ 'SSH_AUTH_SOCK=([^[:space:]]+)' ]] && export SSH_AUTH_SOCK=$match[1]
+  unset _gk
+fi
 alias startssh="ssh-add $HOME/.ssh/tony"
 # GPG signing support: unlock the agent up front with a throwaway signature
 alias startgpg='export GPG_TTY=$(tty) && echo "test" | gpg --clearsign'
